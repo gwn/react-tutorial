@@ -2,14 +2,15 @@
   "name": "react-tutorial",
   "version": "0.1.0",
   "scripts": {
-    "start": "parcel serve index.html --open",
-    "build": "parcel build index.html"
+    "start": "parcel serve index.html --no-cache --open",
+    "build": "parcel build index.html --no-cache"
   },
   "author": "gwn <dev@gwn.wtf>",
   "license": "ISC",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
