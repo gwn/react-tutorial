@@ -17,6 +17,8 @@ const
 
     Home = () => {
         const
+            [hobbies, setHobbies] = useState([]),
+
             listHobbiesQ = useQuery('hobbies', () =>
                 fetch('http://localhost:5000').then(resp => resp.json())),
 
@@ -26,9 +28,13 @@ const
             handleHobbyRemove = useCallback(hobbyName =>
                 setHobbies(hobbies.filter(h => h != hobbyName)))
 
+        useEffect( () => {
+            listHobbiesQ.isSuccess && setHobbies(listHobbiesQ.data)
+        }, [listHobbiesQ.isSuccess])
+
         return <HobbiesContext.Provider
             value={{
-                value: listHobbiesQ.data,
+                value: hobbies,
                 add: handleHobbyAdd,
                 remove: handleHobbyRemove,
             }}
@@ -50,7 +56,7 @@ const
     Maber = ({}) => {
         const hobbiesCtx = useContext(HobbiesContext)
 
-        return JSON.stringify(hobbiesCtx.data)
+        return JSON.stringify(hobbiesCtx.value)
     },
 
     Naber = ({
